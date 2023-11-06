@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Play Button
     playBtn.addEventListener('click', function() {
         video.play();
-        volumeDisplay.textContent = `Volume is: ${video.volume * 100}%`;
+        volumeDisplay.textContent = `${video.volume * 100}%`;
     });
 
     // Pause Button
@@ -60,28 +60,31 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (video.volume > 0){
 			video.dataset.prevVolume = video.volume;
 			video.volume = 0;
-			volumeDisplay.textContent = 'Muted';
+			muteBtn.textContent = 'Unmute';
+			volumeDisplay.textContent = '0%';
+
 		}else{
 			video.volume = video.dataset.prevVolume;
+			muteBtn.textContent = 'Mute';
 			volumeDisplay.textContent = `${video.volume * 100}%`;
 		}
     });
 	// Volume Slider
 	volumeSlider.addEventListener('input', function() {
 		video.volume = this.value / 100;
-		volumeDisplay.textContent = `Volume is: ${video.volume * 100}%`;
+		volumeDisplay.textContent = `${video.volume * 100 }%`;
 	});
 
-	// Old School Button (Add the 'old-school' class to the video)
+	// Utilize the existing 'oldSchool' class on the video element
 	document.getElementById('vintage').addEventListener('click', function() {
-		video.classList.add('old-school');
+		const video = document.getElementById('player1');
+		video.classList.add('oldSchool');
 	});
 
-	// Original Button (Remove the 'old-school' class from the video)
+	// Remove the 'oldSchool' class from the video element
 	document.getElementById('orig').addEventListener('click', function() {
-		video.classList.remove('old-school');
+		const video = document.getElementById('player1');
+		video.classList.remove('oldSchool');
 	});
-	
 
 });
-
